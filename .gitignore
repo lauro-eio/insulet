@@ -18,7 +18,9 @@
 !examples/insulet/
 !examples/insulet/html/
 !examples/insulet/html/**
-
+!examples/atc/
+!examples/atc/html/
+!examples/atc/html/**
 # Never commit secrets or local tooling even if added later
 .env
 .env.*
