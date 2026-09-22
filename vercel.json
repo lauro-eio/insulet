@@ -1,5 +1,16 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/compliance-workshop/client-gate/review-pack.html" }
+    {
+      "source": "/",
+      "destination": "/compliance-workshop/client-gate/review-pack.html"
+    },
+    {
+      "source": "/sneak-peek",
+      "destination": "/compliance-workshop/client-gate/sneak-peek.html"
+    },
+    {
+      "source": "/sneak-peek/",
+      "destination": "/compliance-workshop/client-gate/sneak-peek.html"
+    }
   ]
 }

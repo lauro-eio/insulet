@@ -8,7 +8,7 @@ Mexico Manager Compliance Guide → workshop sessions. Source of truth starts in
 | [`screen-shots/`](screen-shots/) | Presenter / atrium lookbook + claim-card template |
 | [`sessions/`](sessions/) | Locked agenda, pre-read, facilitator guides, decks ([agenda](sessions/agenda.md) · [pre-read](sessions/pre-read-brief.md) · [S01](sessions/session-01-facilitator.md) · [S02](sessions/session-02-facilitator.md) · [S01 deck](sessions/s01-deck-slides.md) · [S02 deck](sessions/s02-deck-slides.md)) |
 | [`handouts/`](handouts/) | Participant handouts ([H1](handouts/handout-01-statutory-benefits.md) · [H2](handouts/handout-02-consequence-matrix.md) locked) |
-| [`client-gate/`](client-gate/) | Legal/HR review pack ([HTML](client-gate/review-pack.html)) |
+| [`client-gate/`](client-gate/) | Legal/HR review pack + sneak-peek demo ([HTML](client-gate/review-pack.html) · [sneak peek](client-gate/sneak-peek.html)) |
 
 ## Source
 
