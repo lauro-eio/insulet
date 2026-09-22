@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/compliance-workshop/client-gate/review-pack.html" }
+  ]
+}

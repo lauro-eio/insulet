@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Insulet — Mexico Manager Compliance Workshop · Client Gate Review Pack</title>
+  <style>
+    :root {
+      --ink: #1a2332;
+      --ink-soft: #3d4a5c;
+      --muted: #5c6b7a;
+      --paper: #ffffff;
+      --wash: #f4f6f8;
+      --line: #d0d7de;
+      --accent: #1e4d6b;
+      --alert: #8b2942;
+      --ok: #1a5c45;
+      --max: 52rem;
+      --wide: 72rem;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      background: var(--wash);
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 1.25rem;
+      background: var(--ink);
+      color: #fff;
+      font-size: 0.85rem;
+    }
+    .toolbar a { color: #c8d9e8; text-decoration: none; margin-right: 0.85rem; }
+    .toolbar a:hover { color: #fff; text-decoration: underline; }
+    .toolbar button {
+      cursor: pointer;
+      border: 1px solid #fff;
+      background: transparent;
+      color: #fff;
+      padding: 0.35rem 0.85rem;
+      font: inherit;
+      border-radius: 2px;
+    }
+    .toolbar button:hover { background: rgba(255,255,255,0.12); }
+
+    main {
+      max-width: var(--wide);
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    .hero {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 1.75rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+    }
+    .hero h1 {
+      margin: 0 0 0.5rem;
+      font-size: 1.65rem;
+      color: var(--accent);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .hero .lede { margin: 0 0 1rem; color: var(--ink-soft); max-width: 40rem; }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding-top: 0.85rem;
+      margin-top: 0.25rem;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.45rem;
+      border: 1px solid var(--line);
+      color: var(--accent);
+      background: var(--wash);
+    }
+
+    section.block {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 1.5rem 1.35rem;
+      margin-bottom: 1.25rem;
+    }
+    section.block > h2 {
+      margin: 0 0 0.85rem;
+      font-size: 1.2rem;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.4rem;
+    }
+    h3 {
+      margin: 1.25rem 0 0.5rem;
+      font-size: 1.02rem;
+      color: var(--ink);
+    }
+    p { margin: 0.5rem 0; }
+    ul, ol { margin: 0.4rem 0 0.8rem; padding-left: 1.25rem; }
+    li { margin: 0.25rem 0; }
+    .note {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      background: var(--wash);
+      border-left: 3px solid var(--accent);
+      padding: 0.65rem 0.85rem;
+      margin: 0.75rem 0;
+    }
+    .alert {
+      border-left-color: var(--alert);
+      background: #faf4f6;
+    }
+    .disclaimer {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      border: 1px dashed var(--line);
+      padding: 0.75rem 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 0.45rem 0.55rem;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: var(--wash);
+      font-weight: 600;
+      color: var(--ink);
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+
+    .signoff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 1.25rem;
+      margin: 1rem 0;
+    }
+    @media (max-width: 640px) {
+      .signoff-grid { grid-template-columns: 1fr; }
+    }
+    .field label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+    .field .line {
+      min-height: 2rem;
+      border-bottom: 1px solid var(--ink);
+    }
+    .checks label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin: 0.4rem 0;
+      font-size: 0.92rem;
+    }
+    .checks .box {
+      flex: 0 0 1rem;
+      width: 1rem;
+      height: 1rem;
+      border: 1.5px solid var(--ink);
+      margin-top: 0.15rem;
+    }
+
+    .claims li strong { color: var(--accent); }
+
+    footer.pack-foot {
+      max-width: var(--wide);
+      margin: 0 auto;
+      padding: 0 1.25rem 2.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    @media print {
+      .toolbar { display: none !important; }
+      body { background: #fff; font-size: 11pt; }
+      main { padding: 0; max-width: none; }
+      .hero, section.block {
+        border: none;
+        border-bottom: 1px solid #ccc;
+        page-break-inside: avoid;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      #handout-1, #handout-2 { page-break-before: always; }
+      #signoff { page-break-after: always; }
+      a { color: inherit; text-decoration: none; }
+      table { font-size: 9pt; }
+      th, td { padding: 0.3rem 0.35rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar" role="navigation">
+    <nav>
+      <a href="#signoff">Sign-off</a>
+      <a href="#overview">Overview</a>
+      <a href="#preread">Pre-read</a>
+      <a href="#claims">Claims</a>
+      <a href="#handout-1">Handout 1</a>
+      <a href="#handout-2">Handout 2</a>
+    </nav>
+    <button type="button" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <main>
+    <header class="hero">
+      <p class="eyebrow">Confidential · Internal review</p>
+      <p><span class="badge">Client gate</span></p>
+      <h1>Mexico Manager Compliance Workshop<br />Legal / HR Review Pack</h1>
+      <p class="lede">
+        Package for Insulet Legal and People &amp; Compliance to approve
+        <strong>simplified playbook language</strong> and
+        <strong>contact routing</strong> before live delivery.
+        This pack does <em>not</em> include full facilitator scripts or slide decks.
+      </p>
+      <div class="meta">
+        <span>Audience: Managers outside Mexico with Mexico-based reports</span>
+        <span>Format: 2 × 90-minute sessions</span>
+        <span>Design: Rule → Red Flag → Escalation</span>
+        <span>Source: Mexico Manager Compliance Guide (FV)</span>
+      </div>
+    </header>
+
+    <!-- SIGN-OFF -->
+    <section class="block" id="signoff">
+      <h2>1. Reviewer sign-off</h2>
+      <p>Please review Sections 2–6 (and Handouts 1–2). Return this page completed, or reply by email with the same fields.</p>
+
+      <div class="signoff-grid">
+        <div class="field">
+          <label>Reviewer name</label>
+          <div class="line"></div>
+        </div>
+        <div class="field">
+          <label>Role / function</label>
+          <div class="line"></div>
+        </div>
+        <div class="field">
+          <label>Organization / team</label>
+          <div class="line"></div>
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <h3>Decision</h3>
+      <div class="checks">
+        <label><span class="box" aria-hidden="true"></span> Approved as presented — playbook language and contact routing may be used for live workshop delivery.</label>
+        <label><span class="box" aria-hidden="true"></span> Approved with edits — list required changes below; re-confirm after updates.</label>
+        <label><span class="box" aria-hidden="true"></span> Not approved — hold delivery until resolved.</label>
+      </div>
+
+      <h3>Contact routing</h3>
+      <div class="checks">
+        <label><span class="box" aria-hidden="true"></span> Escalation contacts and emails on Handouts 1 and 2 are current for this cohort.</label>
+        <label><span class="box" aria-hidden="true"></span> Contacts require updates (note corrections below).</label>
+      </div>
+
+      <h3>Required edits / notes</h3>
+      <div class="field" style="margin-top:0.5rem;">
+        <div class="line" style="min-height:4.5rem;border:1px solid var(--line);background:var(--wash);"></div>
+      </div>
+
+      <div class="signoff-grid" style="margin-top:1.25rem;">
+        <div class="field">
+          <label>Signature / typed name</label>
+          <div class="line"></div>
+        </div>
+        <div class="field">
+          <label>Email for record</label>
+          <div class="line"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section class="block" id="overview">
+      <h2>2. Workshop at a glance</h2>
+      <p class="note">Live teaching focuses on risk recognition and escalation — not turning managers into labor counsel or payroll calculators.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Session</th>
+            <th>Focus (90 min)</th>
+            <th>Guide chapters (live)</th>
+            <th>Handout</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Session 1</strong></td>
+            <td>Hiring, contracts &amp; working hours</td>
+            <td>Ch 1–3 (Ch 4 light / Handout 1)</td>
+            <td>Handout 1 — Benefits &amp; payroll routing</td>
+          </tr>
+          <tr>
+            <td><strong>Session 2</strong></td>
+            <td>Discipline, exits &amp; workplace safety</td>
+            <td>Ch 5–7 (Ch 8–9 / Handout 2)</td>
+            <td>Handout 2 — Consequence matrix &amp; directory</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Session 1 block framework</h3>
+      <ul>
+        <li>Opening &amp; golden rule (10)</li>
+        <li>Mexican framework &amp; contract risks (25)</li>
+        <li>Working hours &amp; overtime (25)</li>
+        <li>Scenarios (20)</li>
+        <li>Wrap + Handout 1 (10)</li>
+      </ul>
+
+      <h3>Session 2 time framework</h3>
+      <ul>
+        <li>Opening &amp; Session 1 recap (10)</li>
+        <li>Performance, discipline &amp; separations (25)</li>
+        <li>Safety, anti-discrimination &amp; matrix (25)</li>
+        <li>Scenarios (20)</li>
+        <li>Wrap + Handout 2 (10)</li>
+      </ul>
+    </section>
+
+    <!-- PRE-READ -->
+    <section class="block" id="preread">
+      <h2>3. Pre-read map (participant prep)</h2>
+      <p>Managers receive the Mexico Manager Compliance Guide and this map before each session.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Session</th>
+            <th>Required</th>
+            <th>Skim / optional</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1</strong></td>
+            <td>How to Use This Guide + Ch 1, 2, 3</td>
+            <td>Ch 4 (Payroll &amp; benefits)</td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td>Ch 5, 6, 7</td>
+            <td>Ch 8, 9</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- CLAIMS -->
+    <section class="block" id="claims">
+      <h2>4. Claims we make (simplified playbook language)</h2>
+      <p>These are the teaching claims distilled for managers. Please flag any overstatement or incorrect routing.</p>
+      <div class="disclaimer">
+        Workshop materials are an internal manager reference. They do not replace Mexican labor law, employment agreements, company policy, or case-specific Legal/HR advice.
+      </div>
+
+      <h3>Golden rule</h3>
+      <ul class="claims">
+        <li><strong>When in doubt, never act alone.</strong> Partner with HRBP / ER / Legal / Payroll before high-risk people actions.</li>
+      </ul>
+
+      <h3>Session 1 — Contracts &amp; hours</h3>
+      <ul class="claims">
+        <li><strong>No at-will employment</strong> in Mexico. Do not say or write “at-will,” “probationary at-will,” or “we can let you go / part ways anytime.”</li>
+        <li><strong>Rights from Day 1</strong>, including trial / training periods.</li>
+        <li><strong>Indefinite contracts are the default.</strong> Fixed-term only with real, verifiable justification; Legal approval.</li>
+        <li><strong>Auto-conversion:</strong> If a fixed-term employee continues working past the end date (even one day), the relationship converts by law to indefinite.</li>
+        <li><strong>Flag fixed-term expirations weeks in advance</strong> — do not invent a statutory “30-day contract” clock (that clock is for misconduct notice in Session 2).</li>
+        <li><strong>Core-activity subcontracting / “contractors”</strong> for ongoing Insulet work: stop and route to HR/Legal (2021 reforms).</li>
+        <li><strong>Overtime:</strong> voluntary, pre-authorized, logged in Workday (same day or week). Cap: 12 extraordinary hours/week (4 hrs/day, max 4 days). Exceeding the cap → Legal/Payroll before implementation.</li>
+        <li><strong>No substitutions:</strong> no flat cash, gift cards, allowances, or informal comp time in place of overtime pay.</li>
+        <li><strong>Managers do not calculate</strong> overtime premiums or statutory benefit amounts — Payroll does; managers authorize and record hours accurately.</li>
+      </ul>
+
+      <h3>Session 2 — Discipline, exits &amp; safety</h3>
+      <ul class="claims">
+        <li><strong>Poor performance alone rarely equals legal cause.</strong> Document facts/dates/impact — not labels. Partner with ER on warnings/PIPs.</li>
+        <li><strong>30-day misconduct clock:</strong> sitting on misconduct can forfeit reliance on that cause (prompt notice window from awareness).</li>
+        <li><strong>Consistency:</strong> unequal discipline for similar conduct creates discrimination / pretext risk.</li>
+        <li><strong>Never communicate a termination, suggest resignation, or discuss severance alone.</strong> Stop; ER/Legal lead; CFCRL conciliation for exits.</li>
+        <li><strong>Severance exposure</strong> is described as <em>shape only</em> (full statutory <strong>aggregate</strong> salary — broader than base). Not a calculator.</li>
+        <li><strong>Harassment / discrimination / bullying:</strong> Recognize → Report immediately to ER → Confidentiality → Zero retaliation. Do not investigate “off the record.”</li>
+        <li><strong>Inaction</strong> on harassment can support employee rescission with cause attributable to the employer (full-severance-equivalent exposure).</li>
+        <li><strong>NOM-035 / NOM-037:</strong> name-checked as mandatory protocols; managers support and escalate — no live teaching of questionnaires or remote-work reimbursements.</li>
+      </ul>
+
+      <div class="note alert">
+        <strong>Out of this pack:</strong> full facilitator scripts, 32 slide blueprints, exercise mock emails/texts, and pitch video materials. Available on request for a deeper line-by-line review.
+      </div>
+    </section>
+
+    <!-- HANDOUT 1 -->
+    <section class="block" id="handout-1">
+      <h2>5. Handout 1 — Statutory Benefits Summary &amp; Payroll Guide</h2>
+      <p><span class="badge">Distributes end of Session 1</span></p>
+      <p class="disclaimer">
+        <strong>Disclaimer:</strong> Internal manager reference. Does not replace Mexican labor law, individual employment agreements, company policies, or case-specific HR/Payroll/Legal advice. Confirm amounts, cutoffs, and entity-specific rules with Payroll before acting.
+      </p>
+
+      <h3>1. Statutory benefits overview</h3>
+      <p>Statutory benefits under the FLL are non-waivable and accrue from Day 1, including trial or training periods.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Statutory benefit</th>
+            <th>Statutory minimum requirement</th>
+            <th>Manager responsibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Aguinaldo</strong> (Christmas Bonus)</td>
+            <td>Mandatory year-end bonus of <strong>30 days’ salary</strong>, paid by December each year (Payroll calculates per contract/entity).</td>
+            <td>Plan workloads, approvals, and schedules early so December payroll is not disrupted.</td>
+          </tr>
+          <tr>
+            <td><strong>Vacation &amp; Vacation Premium</strong></td>
+            <td>Vacation: generally after 12 months; typically up to 18 months to use. <em>Prima Vacacional:</em> mandatory 25% premium on vacation pay.</td>
+            <td>Approve leave fairly in Workday; encourage rest; do not pressure employees to forgo vacation.</td>
+          </tr>
+          <tr>
+            <td><strong>PTU</strong> (Profit Sharing)</td>
+            <td>Statutory profit sharing within the annual statutory window.</td>
+            <td>No direct action. Route questions to HR/Payroll.</td>
+          </tr>
+          <tr>
+            <td><strong>IMSS</strong> (Social Security)</td>
+            <td>Mandatory enrollment for medical, risk, disability, and retirement coverage.</td>
+            <td>Notify HR of confirmed start dates in time for Day 1 registration.</td>
+          </tr>
+          <tr>
+            <td><strong>INFONAVIT</strong> (Housing Fund)</td>
+            <td>Mandatory employer contributions; may include payroll deductions for housing credits.</td>
+            <td>No direct action. Managed by HR and Payroll.</td>
+          </tr>
+          <tr>
+            <td><strong>Sunday Premium</strong> (<em>Prima Dominical</em>)</td>
+            <td>Additional <strong>25% premium</strong> on daily salary when the regular schedule includes Sunday.</td>
+            <td>Factor Sunday work into scheduling; confirm patterns with Payroll.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. Manager vs. HR / Payroll ownership</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Task / activity</th>
+            <th>Manager owns</th>
+            <th>HR / Payroll / Finance owns</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Time &amp; overtime</strong></td>
+            <td>Pre-authorize extraordinary hours; log/review actual hours in Workday same day or week.</td>
+            <td>Calculate statutory premiums; verify weekly caps; process pay runs.</td>
+          </tr>
+          <tr>
+            <td><strong>Leave &amp; vacations</strong></td>
+            <td>Approve leave promptly; plan coverage.</td>
+            <td>Accruals, vacation premium, legal usage windows.</td>
+          </tr>
+          <tr>
+            <td><strong>New-hire onboarding</strong></td>
+            <td>Timely requisitions, offer details, confirmed start dates.</td>
+            <td>IMSS/INFONAVIT registration; Day 1 contract execution.</td>
+          </tr>
+          <tr>
+            <td><strong>Employee pay questions</strong></td>
+            <td>Listen and route immediately to HR/Payroll.</td>
+            <td>Pay stubs, withholdings, resolution.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. Critical overtime &amp; payroll rules</h3>
+      <div class="note alert">
+        <strong>Manager alert:</strong> Informal payroll arrangements are illegal. Never suggest, approve, or tolerate off-payroll, cash-in-hand, gift cards, or “we’ll true it up later.” Every peso must run through proper payroll with statutory contributions.
+      </div>
+      <ol>
+        <li><strong>No substitutions:</strong> Do not replace overtime with bonuses, flat allowances, informal comp time, or time off in lieu.</li>
+        <li><strong>Mandatory logging:</strong> Accurate Workday records; missing records weigh against the employer.</li>
+        <li><strong>Weekly caps:</strong> Max 12 extraordinary hours/week (4 hrs/day, max 4 days). Exceeding the cap requires Legal and Payroll review before implementation.</li>
+        <li><strong>Premiums:</strong> Payroll applies statutory premiums. Managers verify hours and approvals before cutoff — they do not calculate double/triple rates.</li>
+      </ol>
+
+      <h3>4. Contacts, payroll cutoffs &amp; escalation</h3>
+      <p><strong>Payroll cutoffs:</strong> Dates change by entity and period. Before approving late hours or leave that affects the current cycle, confirm the active cutoff with Payroll (<code>payroll@insulet.com</code>). Do not assume prior-month dates.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Need</th>
+            <th>Contact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Day-to-day HR</td>
+            <td>HR Services — <code>Ask.hr@insulet.com</code></td>
+          </tr>
+          <tr>
+            <td>Payroll processing &amp; cutoff dates</td>
+            <td>Perla Barajas — <code>payroll@insulet.com</code></td>
+          </tr>
+          <tr>
+            <td>HR Business Partner (HRBP)</td>
+            <td>Juan Jose Criado / Miguel Barrera — via e-mail</td>
+          </tr>
+          <tr>
+            <td>Employee Relations (ER)</td>
+            <td>Paulette Guevara — <code>er@insulet.com</code></td>
+          </tr>
+          <tr>
+            <td>Legal Counsel</td>
+            <td>Ernesto Ramirez — via e-mail</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><em>Confirm names and routing with People/Compliance before live workshop delivery.</em></p>
+    </section>
+
+    <!-- HANDOUT 2 -->
+    <section class="block" id="handout-2">
+      <h2>6. Handout 2 — Consequence Risk Matrix &amp; Escalation Directory</h2>
+      <p><span class="badge">Distributes end of Session 2</span></p>
+      <p class="disclaimer">
+        <strong>Disclaimer:</strong> Internal manager reference and a <strong>planning aid</strong>, not a precise prediction or severance calculator. Outcomes depend on facts, tenure, salary composition, and counsel’s assessment. Does not replace Mexican labor law, company policies, or case-specific HR/Legal advice. Confirm contacts before live delivery.
+      </p>
+
+      <h3>1. Consequence matrix for non-compliance</h3>
+      <p>Use to understand <strong>why</strong> escalation matters — not to quote a dollar amount. Exposure bands are directional only.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Manager action / misstep</th>
+            <th>Legal &amp; regulatory risk</th>
+            <th>Financial &amp; structural exposure</th>
+            <th>Reputational</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Misclassifying as contractor / improper outsourcing</strong></td>
+            <td>Reclassification; 2021 subcontracting sanctions</td>
+            <td><strong>High</strong> — back pay, benefits, retroactive IMSS/INFONAVIT, fines</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td><strong>Unrecorded / unpaid OT or “bonus” substitutions</strong></td>
+            <td>STPS findings; labor claims</td>
+            <td><strong>Medium–High</strong> — back pay at statutory premiums + interest/fines</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td><strong>Fixed-term lapse while work continues</strong></td>
+            <td>Auto-conversion to indefinite</td>
+            <td><strong>Medium</strong> — lost term protections; future severance liability</td>
+            <td>Low</td>
+          </tr>
+          <tr>
+            <td><strong>Terminating without documented legal cause</strong></td>
+            <td>Unjustified dismissal claim</td>
+            <td><strong>High</strong> — full statutory <strong>aggregate</strong> severance (base + bonuses, allowances, benefits in kind; shape only — Payroll/Legal calculate) + costs</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td><strong>Ignoring / mishandling harassment or discrimination report</strong></td>
+            <td>Rescission with cause attributable to employer; authority action</td>
+            <td><strong>High</strong> — full statutory severance equivalent + fines</td>
+            <td>Very High</td>
+          </tr>
+          <tr>
+            <td><strong>Off-payroll / cash / informal compensation</strong></td>
+            <td>Tax, IMSS, INFONAVIT violations</td>
+            <td><strong>High</strong> — assessments, contributions, fines, personal exposure</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td><strong>Omitting NOM-035 / mandatory protocols</strong></td>
+            <td>STPS inspection findings</td>
+            <td><strong>Low–Medium</strong> — administrative fines indexed to UMA</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td><strong>Inconsistent discipline across the team</strong></td>
+            <td>Discrimination / pretext claims</td>
+            <td><strong>Medium–High</strong> — severance + potential damages</td>
+            <td>High</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>Note:</strong> Fines and indemnities are often indexed to the UMA or minimum-wage multiples, which rise annually. Treat prior figures as stale.</p>
+
+      <h3>2. Red flags — stop and escalate immediately</h3>
+      <ul>
+        <li><strong>Contract expiration:</strong> Fixed-term end date within weeks, or passed while work continues.</li>
+        <li><strong>Overtime thresholds:</strong> Unauthorized OT, or approaching the 12-hour weekly cap.</li>
+        <li><strong>Informal deals:</strong> Cash, gift cards, allowances, bonuses, or informal comp time instead of Workday overtime.</li>
+        <li><strong>Contemplating exit:</strong> Ending employment for any reason — ER/Legal and CFCRL; never DIY.</li>
+        <li><strong>Safety &amp; workplace reports:</strong> Harassment, discrimination, violence, bullying, or retaliation.</li>
+        <li><strong>Differential treatment:</strong> Temptation to discipline one employee differently from a comparable colleague.</li>
+      </ul>
+
+      <h3>3. Escalation directory</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Responsibility / need</th>
+            <th>Primary contact</th>
+            <th>Channel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Day-to-day people questions</td>
+            <td>HR Services</td>
+            <td><code>Ask.hr@insulet.com</code></td>
+          </tr>
+          <tr>
+            <td>Contracts, fixed-term reviews &amp; HRBP</td>
+            <td>Juan Jose Criado / Miguel Barrera</td>
+            <td>E-mail / Teams</td>
+          </tr>
+          <tr>
+            <td>Progressive discipline, PIPs &amp; performance logging</td>
+            <td>Employee Relations (Paulette Guevara)</td>
+            <td><code>er@insulet.com</code></td>
+          </tr>
+          <tr>
+            <td>Separations, terminations &amp; CFCRL conciliation</td>
+            <td>Employee Relations &amp; Legal (Ernesto Ramirez)</td>
+            <td><code>er@insulet.com</code> / e-mail</td>
+          </tr>
+          <tr>
+            <td>Harassment, bullying &amp; anti-discrimination</td>
+            <td>Employee Relations</td>
+            <td><code>er@insulet.com</code></td>
+          </tr>
+          <tr>
+            <td>Payroll, overtime caps &amp; IMSS/INFONAVIT</td>
+            <td>Payroll (Perla Barajas)</td>
+            <td><code>payroll@insulet.com</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note">
+        <strong>Golden rule:</strong> When in doubt, do not act alone. Partnering early with HR and Legal is the strongest safeguard against financial and legal liability.
+      </div>
+      <p><em>Confirm names and routing with People/Compliance before live workshop delivery.</em></p>
+    </section>
+  </main>
+
+  <footer class="pack-foot">
+    Insulet · Mexico Manager Compliance Workshop · Client Gate Review Pack · Assembled from locked sessions/handouts content · Not for external redistribution beyond Insulet reviewers.
+  </footer>
+</body>
+</html>
